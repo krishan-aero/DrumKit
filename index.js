@@ -3,11 +3,13 @@ for (var i = 0; i < document.querySelectorAll(".drum").length; i++){
     document.querySelectorAll(".drum")[i].addEventListener("click", function(){
         var buttonClicked = this.innerHTML;
         handleClick(buttonClicked);
+        buttonAnimation(buttonClicked);
     });   
 }
 
 document.addEventListener("keydown", function(event){
     handleClick(event.key);
+    buttonAnimation(event.key);
 })
 
 function handleClick(key){
@@ -46,3 +48,11 @@ function handleClick(key){
     }
 }
 
+function buttonAnimation(key){
+    var activeButton = document.querySelector("." + key);
+    activeButton.classList.add("pressed");
+
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+    }, 100);
+}
